@@ -35,9 +35,11 @@ async function connect(uri , dbname) {
 async function main() {
     // connection string is now from the .env file
     // get the database using the `connect` function
+    const uri = process.env.MONGO_URI;
+
     const db = await connect(uri, "sctp02_food_sightings");
     // create the routes after connecting to the database
-    app.get("/food-sightings", async function (req, res) {
+    app.get("/foods-sightings", async function (req, res) {
         try {
             // get all the sightings
             const results = await db.collection("sightings").find({}).toArray();
